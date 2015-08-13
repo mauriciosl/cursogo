@@ -335,6 +335,28 @@ Anexa o metodo String no tipo Mes
 
 .play custom_type.go /main START OMIT/,/main END OMIT/
 
+* Interface
+
+DuckTyping!
+
+.code quack.go /interface START OMIT/,/interface END OMIT/
+
+* Implementa
+
+.code quack.go /implement START OMIT/,/implement END OMIT/
+
+* Multiuso
+
+.play quack.go /use START OMIT/,/use END OMIT/
+
+* Interface pra tipos dinamicos
+
+.play interface.go /START OMIT/,/END OMIT/
+
+* Convertendo
+
+.play converte.go
+
 * Hello Web
 
 .code uhul_web.go
@@ -343,3 +365,4 @@ Anexa o metodo String no tipo Mes
 
 - Concurrency
 - Packages
+- JSON
