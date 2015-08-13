@@ -1,0 +1,345 @@
+Curso de GO
+12 Aug 2015
+Tags: go, golang, intro
+
+Mauricio Souza Lima
+me@mauriciosl.com
+@mauriciosl
+
+* Uma breve história
+
+Robert Griesemer, Rob Pike, e Ken Thompson em 2008.
+"Como deveria ser uma linguagem pratica e moderna?"
+
+* O time hoje
+
+- Russ Cox
+- Robert Griesemer
+- Rob Pike
+- Ian Taylor
+- Ken Thompson
+
+ ...Mais muitos outros colaboradores
+
+* Principais Features
+
+- Simples
+- Rápido
+- Seguro
+- Concorrente
+- Divertido
+- OpenSource
+
+* Caracteristicas
+
+- Syntax tipo C
+- Imperativa
+- Tipagem estática
+- Elementos de tipagem dinâmica
+- Garbage collected
+- Compila para codigo nativo, linkagem estática
+- Compilação rápida
+
+* Olá Mundo
+
+.play uhul.go
+
+* Constantes
+
+Expressões
+
+ const half = 1.0/2
+ const M64 int64 = 1<<20
+
+Enum Go style
+
+ const (
+    RED     = iota
+    BLUE    = iota
+    GREEN   = iota
+ )
+
+* Variáveis
+
+Define
+
+ var name string
+ var (
+     x, y  int
+     p     float64
+ )
+
+Infere o tipo pelo valor
+
+ var x = "uhul!"
+ var x = 42
+ var x = 3.14
+
+Declara e designa (apenas dentro de função)
+
+ x := "uhul!"
+
+* Tipos
+
+  uint8 (byte), uint16, uint32, uint32, uint64,
+  int8, int16, int32, int32 (rune), int64,
+  float32, float64,
+  complex64, complex128,
+  uint, int, uintptr,
+  bool, string
+
+Compostos
+
+ array, struct, pointer, function,
+ slice, map, channel
+
+* Funções
+
+Normal
+
+ func dobro(x int) int {
+      return x * 2
+ }
+
+Multiplo retorno
+
+ func div(x float64) (int, int)
+
+Cidadãs de primeira classe
+
+ v := func(x int) int {
+     return x * 2
+ }
+ v(5)  // 10
+
+* Sentenças
+
+ f, err = os.Open(filename)
+
+ if x < y {
+     return x
+ } else {
+     return y
+ }
+
+ switch desconto {
+ case LastMinute:
+    ...  // break implícito
+ case BlackFriday, UmReal:
+    ...
+ default:
+    ...
+ }
+
+* Sentenças
+
+ switch {
+ case x % 3:
+    ...  // break implícito
+ case x % 5:
+    ...
+ default:
+    ...
+ }
+
+* For
+
+ for i := 0; i < 100; i ++ {
+     ...
+ }
+
+ for iterator.Next() {
+     ...
+ }
+
+ for {
+     ... ever and ever ...
+ }
+
+ break
+ continue
+
+* Code TIME!
+
+.image pingpong.jpg
+
+* Testes
+
+.image testing.jpg
+
+* Criando Testes
+
+Estrutura de arquivos
+
+ pingpong.go
+ pingpong_test.go
+
+Pacote testing
+
+ package main
+
+ import "testing"
+
+ func TestMeuCaso(t *testing.T) {
+     t.Fatal("um bug!")
+ }
+
+Rodando o teste
+
+ go test
+
+* Slices e Arrays
+
+Array é uma sequencia de tamanho fixo
+
+ [8]int  // Array de int
+
+Slices possuem tamanho variável, capacidade e tamanho.
+
+ []int  // Slice de int
+
+Operações com slices
+
+  make([]int, size)
+  make([]int, size, cap)
+  len(s)
+  s[i]
+  s[i:j]
+  append(s, x)
+
+* Slices
+
+ s := make([]int, 4, 5)
+
+ struct {
+    Array: [5]int
+    Len: 4
+ }
+
+ append(s, element)
+
+ s.Array[5] = element
+ s.Len = 5
+
+ append(s, element)
+
+ s.Array = [6]int{..., element}
+ s.Len = 6
+
+* Exposto
+
+.image ltswj.jpg
+
+* Slices exemplo
+
+.play slices.go /START OMIT/,/END OMIT/
+
+* Maps
+
+ map[K]V  // map K -> V
+
+- Hashmap da linguagem
+- Usa árvore binária, bastante rápido
+- Copiar um map copia apenas a referência
+
+ var x map[int]int = map[int]int{1:0, 3:4}
+ x := map[int]int{1:0, 3:4}
+ x[9] = 100
+ len(x)  // 3
+ delete(x, 9)  // [1:0 3:4]
+
+* Existe a chave?
+
+ x := map[int]int{1:0, 3:4}
+
+ valor, existe := x[2]
+
+ _, existe := x[2]
+
+ if valor, existe := x[2]; existe {
+     ...
+ }
+
+* Exemplo de Map
+
+.play maps.go /START OMIT/,/END OMIT/
+
+* Iterando com range
+
+ x := []int{2, 4, 6}
+ m := map[string]string{"hu":"uhul!", "rock":"Rio"}
+
+Iterando sobre os índices
+
+ for index := range x         // 0 1 2
+
+Índices e valores
+
+ for index, value := range x  // 0,2 1,4 2,6
+
+Apenas valores
+
+ for _, value := range x      // 2 4 6
+
+* Em maps
+
+ for key := range m           // "hu" "rock"
+ for key, value := range m    // "hu","uhul!" "rock","Rio"
+
+* Exemplos de range
+
+.play range.go /START OMIT/,/END OMIT/
+
+* Code TIME!
+
+.image countletters.jpg
+
+* Tests?
+
+.image yunotest.jpg
+
+* Criando Struct
+
+Struct is the new Class
+
+ type Point struct {
+     X, Y int
+ }
+
+ p := Point{10, 20}
+ p := Point{X: 10, Y: 20}
+ p := Point{}  // Point{0, 0}
+
+
+* Metodos
+
+ func (p *Point) Mul(v int) {
+     p.X, p.Y = p.X*v, p.Y*v
+ }
+
+ p.Mul(2)
+
+* Ponteiros
+
+.play pointers.go /START OMIT/,/END OMIT/
+
+* Tipos customizados
+
+Define o tipo
+
+.code custom_type.go /type START OMIT/,/type END OMIT/
+
+Anexa o metodo String no tipo Mes
+
+.code custom_type.go /String START OMIT/,/String END OMIT/
+
+.play custom_type.go /main START OMIT/,/main END OMIT/
+
+* Hello Web
+
+.code uhul_web.go
+
+* Proximos passos
+
+- Concurrency
+- Packages
