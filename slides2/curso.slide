@@ -1,0 +1,250 @@
+Curso de GO
+Parte 2
+20 Aug 2015
+Tags: go, golang, intro
+
+Mauricio Souza Lima
+me@mauriciosl.com
+@mauriciosl
+
+* Package
+
+Criando seu GOPATH
+
+    mkdir ~/go
+
+Coloque no seu profile (~/.bash_profile ou ~/.profile)
+
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+
+* Workspace
+
+Crie o seu diretório pro projeto ex.:
+
+    mkdir ~/go/src/github.com/mauriciosl/cursogo
+    cd ~/go/src/github.com/mauriciosl/cursogo
+
+* Package
+
+utils/functions.go
+
+    package utils
+
+    func Greet(name string) {
+        fmt.Printf("Hi! %s\n", name)
+    }
+
+main.go
+
+    package main
+
+    import "github.com/mauriciosl/cursogo/utils"
+
+    func main() {
+        utils.Greet("Fulano")
+    }
+
+* Rodando o programa
+
+    go run main.go
+
+    go build main.go
+    ./main
+
+    go install .
+    ./cursogo
+
+* defer
+
+Executa algo assim que a função sair
+
+.play defer/defer.go
+
+* GO! routine
+
+Criando uma goroutine
+
+    go func
+
+Exemplo:
+
+    func Click(x, y int) {
+        SaveEvent(x, y)
+    }
+
+    go Click()
+
+* Exemplo
+
+.play goroutine/goroutine.go
+
+* Sincronizar com WaitGroup
+
+.play wglock/wglock.go /START OMIT/,/END OMIT/
+
+* Sincronizar com channel
+
+Criando channel:
+
+    ch := make(chan int)
+
+Enviando e recebendo dados:
+
+    ch <- 1      // Envia 1 para o canal
+    foo := <- ch // Recebe 1 do canal
+
+Com for:
+
+    for foo := range ch { // Recebe até o canal ser fechado
+
+Fechando um canal
+
+    close(ch)
+
+* Exemplo
+
+.play channel/channel.go /START OMIT/,/END OMIT/
+
+* Channel buffer
+
+    ch := make(chan int, 1)
+    ch <- // Não bloqueia
+    ch <- // Bloqueia até alguém ler
+
+* Processando jobs
+
+Definindo o worker
+
+.code mapreduce/mapreduce.go /worker START OMIT/,/worker END OMIT/
+
+* Plugando o worker
+
+.play mapreduce/mapreduce.go /main START OMIT/,/main END OMIT/
+
+* Exercício crawler
+
+.image crawlin.jpg
+
+* Torne concorrente
+
+.play crawler/crawler.go /START OMIT/,/END OMIT/
+
+* Hello Web
+
+Um servidor simples
+
+.code uhul_web/uhul_web.go
+
+* Criando Handler
+
+Um HandlerFunc é qualquer função que implementa o contrato
+
+    type HandlerFunc func(http.ResponseWriter, *http.Request)
+
+Exemplo:
+
+.code uhul_web/uhul_web.go /func START OMIT/,/func END OMIT/
+
+* Plugando o Handler
+
+Usando o HandleFunc do modulo http
+
+.code uhul_web/uhul_web.go /main START OMIT/,/main END OMIT/
+
+* Criando um objeto handler
+
+Um handler é qualquer objeto que implementa um metodo ServeHTTP
+
+    type Handler interface {
+        ServeHTTP(ResponseWriter, *Request)
+    }
+
+Exemplo:
+
+.code uhul_app/uhul_app.go /struct START OMIT/,/struct END OMIT/
+
+* Plugando o objeto
+
+.code uhul_app/uhul_app.go /main START OMIT/,/main END OMIT/
+
+* Anatomia do servidor
+
+- Listen tcp
+- Accept connection
+- Cria goroutine
+- Processa request
+- Chama handler default (geralmente um MUX)
+- Mux dispacha para o handler registrado
+- Handler final executa e escreve resposta
+- Servidor envia resposta e finaliza goroutine
+
+* RESTFUL API
+
+.image restful.jpg
+
+* Package server
+
+server/server.go
+
+.code ../server/server.go
+
+* Handlers
+
+server/handlers.go
+
+.code note/handlers_1.go
+
+* Main
+
+main.go
+
+.code ../main.go
+
+* KeyDB
+
+keydb/keydb.go
+
+.code ../keydb/keydb.go
+
+* KeyDB ServeHTTP
+
+keydb/handlers.go
+
+.code ../keydb/handlers.go /servehttp START OMIT/,/servehttp END OMIT/
+
+* KeyDB HandleGet
+
+keydb/handlers.go
+
+.code ../keydb/handlers.go /get START OMIT/,/get END OMIT/
+
+* KeyDB HandleSet
+
+keydb/handlers.go
+
+.code ../keydb/handlers.go /set START OMIT/,/set END OMIT/
+
+* Handlers
+
+server/handlers.go
+
+.code ../server/handlers.go
+
+* Usando
+
+    curl http://localhost:6680/db/fulano
+    curl -X POST -d '{"name":"fulano"}' http://localhost:6680/db/person1
+    curl -X POST -d '{"name":"beltrano"}' http://localhost:6680/db/person1
+
+* Exercicio
+
+.image backup.jpg
+
+* Exercicio
+
+ - Criar um endpoint para apagar uma chave
+    Hint: delete(map, key)
+ - Escrever uma rotina para salvar os dados
+ - Salvar os dados periodicamente
+    Hint: time.Ticket
