@@ -235,7 +235,9 @@ server/handlers.go
 
     curl http://localhost:6680/db/fulano
     curl -X POST -d '{"name":"fulano"}' http://localhost:6680/db/person1
+    curl http://localhost:6680/db/fulano
     curl -X POST -d '{"name":"beltrano"}' http://localhost:6680/db/person1
+    curl http://localhost:6680/db/fulano
 
 * Exercicio
 
