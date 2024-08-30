@@ -24,7 +24,7 @@ func Reply(i interface{}) {
 	case int:
 		fmt.Printf("int: %d\n", i)
 	case Quacker:
-		fmt.Printf("%s\n", i.String())
+		fmt.Printf("%s\n", i.Quack())
 	}
 }
 
