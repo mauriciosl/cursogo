@@ -13,4 +13,10 @@ Then, you can run the following command to view the slides:
 
 It will run a local server that you can access by opening the following URL in your browser:
 
-```http://127.0.0.1:3999/ ```
+First part
+
+```http://127.0.0.1:3999/slides1/curso.slide```
+
+Second part
+
+```http://127.0.0.1:3999/slides2/curso.slide```
