@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sync"
 	"time"
 )
@@ -9,7 +10,8 @@ import (
 // START OMIT
 func say(wg *sync.WaitGroup, i int) {
 	defer wg.Done()
-	time.Sleep(time.Duration(i) * time.Second)
+	// Espera entre 0.5 e 2.5 segundos
+	time.Sleep(time.Duration(rand.Intn(2000)+500) * time.Millisecond)
 	fmt.Printf("done %d\n", i)
 }
 

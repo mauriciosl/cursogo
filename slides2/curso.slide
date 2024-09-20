@@ -1,6 +1,5 @@
-Curso de GO
 Parte 2
-13 Set 2024
+20 Set 2024
 Tags: go, golang, intro
 
 Mauricio Souza Lima
@@ -73,14 +72,6 @@ Definindo o worker
 * Plugando o worker
 
 .play mapreduce/mapreduce.go /main START OMIT/,/main END OMIT/
-
-* Exercício crawler
-
-.image crawlin.jpg
-
-* Torne concorrente
-
-.play crawler/crawler.go /START OMIT/,/END OMIT/
 
 * Hello Web
 
@@ -202,3 +193,16 @@ server/handlers.go
  - Escrever uma rotina para salvar os dados
  - Salvar os dados periodicamente
     Hint: time.Ticket
+
+* Aprendendo Mais
+
+Livro: A Linguagem de Programação GO
+
+https://novatec.com.br/livros/linguagem-de-programacao-go/
+
+Autores:
+Alan A. A. Donovan
+Brian W. Kernighan
+
+Revisão Técnica:
+Luciano Ramalho

@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// START OMIT
 type LetterCountMap map[rune]int
 
 func (m LetterCountMap) Add(c rune) {
@@ -21,5 +22,6 @@ func main() {
 	for letter, count := range counter {
 		fmt.Printf("%q: %d\n", letter, count)
 	}
-	fmt.Println(counter)
 }
+
+// END OMIT

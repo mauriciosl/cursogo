@@ -1,5 +1,5 @@
 Curso de GO
-13 Set 2024
+20 Set 2024
 Tags: go, golang, intro
 
 Mauricio Souza Lima
@@ -318,18 +318,6 @@ Apenas valores
 
 .play range.go /START OMIT/,/END OMIT/
 
-* Code TIME!
-
-.image countletters.jpg
-
-* Exemplo
-
-.play letter_counter.go
-
-* Tests?
-
-.image yunotest.jpg
-
 * Criando Struct
 
 Struct is the new Class
@@ -366,6 +354,18 @@ Anexa o metodo String no tipo Mes
 .code custom_type.go /String START OMIT/,/String END OMIT/
 
 .play custom_type.go /main START OMIT/,/main END OMIT/
+
+* Code TIME!
+
+.image countletters.jpg
+
+* Exemplo
+
+.play letter_counter.go /START OMIT/,/END OMIT/
+
+* Tests?
+
+.image yunotest.jpg
 
 * Interface
 
