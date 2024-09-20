@@ -1,59 +1,11 @@
 Curso de GO
 Parte 2
-20 Aug 2015
+13 Set 2024
 Tags: go, golang, intro
 
 Mauricio Souza Lima
 me@mauriciosl.com
 @mauriciosl
-
-* Package
-
-Criando seu GOPATH
-
-    mkdir ~/go
-
-Coloque no seu profile (~/.bash_profile ou ~/.profile)
-
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
-
-* Workspace
-
-Crie o seu diretório pro projeto ex.:
-
-    mkdir ~/go/src/github.com/mauriciosl/cursogo
-    cd ~/go/src/github.com/mauriciosl/cursogo
-
-* Package
-
-utils/functions.go
-
-    package utils
-
-    func Greet(name string) {
-        fmt.Printf("Hi! %s\n", name)
-    }
-
-main.go
-
-    package main
-
-    import "github.com/mauriciosl/cursogo/utils"
-
-    func main() {
-        utils.Greet("Fulano")
-    }
-
-* Rodando o programa
-
-    go run main.go
-
-    go build main.go
-    ./main
-
-    go install .
-    ./cursogo
 
 * defer
 
@@ -134,7 +86,7 @@ Definindo o worker
 
 Um servidor simples
 
-.code uhul_web/uhul_web.go
+.code auu_web/auu_web.go
 
 * Criando Handler
 
@@ -144,13 +96,13 @@ Um HandlerFunc é qualquer função que implementa o contrato
 
 Exemplo:
 
-.code uhul_web/uhul_web.go /func START OMIT/,/func END OMIT/
+.code auu_web/auu_web.go /func START OMIT/,/func END OMIT/
 
 * Plugando o Handler
 
 Usando o HandleFunc do modulo http
 
-.code uhul_web/uhul_web.go /main START OMIT/,/main END OMIT/
+.code auu_web/auu_web.go /main START OMIT/,/main END OMIT/
 
 * Criando um objeto handler
 
@@ -162,11 +114,11 @@ Um handler é qualquer objeto que implementa um metodo ServeHTTP
 
 Exemplo:
 
-.code uhul_app/uhul_app.go /struct START OMIT/,/struct END OMIT/
+.code auu_app/auu_app.go /struct START OMIT/,/struct END OMIT/
 
 * Plugando o objeto
 
-.code uhul_app/uhul_app.go /main START OMIT/,/main END OMIT/
+.code auu_app/auu_app.go /main START OMIT/,/main END OMIT/
 
 * Anatomia do servidor
 
@@ -233,11 +185,11 @@ server/handlers.go
 
 * Usando
 
-    curl http://localhost:6680/db/fulano
+    curl http://localhost:6680/db/person1
     curl -X POST -d '{"name":"fulano"}' http://localhost:6680/db/person1
-    curl http://localhost:6680/db/fulano
+    curl http://localhost:6680/db/person1
     curl -X POST -d '{"name":"beltrano"}' http://localhost:6680/db/person1
-    curl http://localhost:6680/db/fulano
+    curl http://localhost:6680/db/person1
 
 * Exercicio
 

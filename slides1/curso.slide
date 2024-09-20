@@ -1,5 +1,5 @@
 Curso de GO
-12 Aug 2015
+13 Set 2024
 Tags: go, golang, intro
 
 Mauricio Souza Lima
@@ -25,24 +25,25 @@ Robert Griesemer, Rob Pike, e Ken Thompson em 2008.
 
 - Simples
 - Rápido
-- Seguro
+- Seguro*
 - Concorrente
-- Divertido
+- Chata
 - OpenSource
 
-* Caracteristicas
+* Características
 
 - Syntax tipo C
 - Imperativa
 - Tipagem estática
-- Elementos de tipagem dinâmica
-- Garbage collected
-- Compila para codigo nativo, linkagem estática
+- Elementos de tipagem dinâmica (_reflection_)
+- Garbage collection
+- Compila para código nativo, linkagem estática e dinâmica
 - Compilação rápida
+- Easy cross compile
 
 * Olá Mundo
 
-.play uhul.go
+.play auu.go
 
 * Constantes
 
@@ -71,13 +72,13 @@ Define
 
 Infere o tipo pelo valor
 
- var x = "uhul!"
+ var x = "auu!"
  var x = 42
  var x = 3.14
 
 Declara e designa (apenas dentro de função)
 
- x := "uhul!"
+ x := "auu!"
 
 * Tipos
 
@@ -101,7 +102,7 @@ Normal
       return x * 2
  }
 
-Multiplo retorno
+Múltiplo retorno
 
  func div(x float64) (int, int)
 
@@ -122,10 +123,10 @@ Cidadãs de primeira classe
      return y
  }
 
- switch desconto {
- case LastMinute:
+ switch approval {
+ case approved:
     ...  // break implícito
- case BlackFriday, UmReal:
+ case pending, rejected:
     ...
  default:
     ...
@@ -163,6 +164,29 @@ Cidadãs de primeira classe
 
 .image pingpong.jpg
 
+* Download and install
+
+Download
+https://go.dev/dl/
+
+Documentação da standard library
+https://pkg.go.dev/std
+
+Playground
+https://go.dev/play/
+
+* Criando um projeto
+
+go mod init stone.com/pingpong
+
+* Ping Pong
+
+.play pingpong.go
+
+* Exemplo
+
+.play pingpong_answer.go
+
 * Testes
 
 .image testing.jpg
@@ -180,13 +204,17 @@ Pacote testing
 
  import "testing"
 
- func TestMeuCaso(t *testing.T) {
+ func TestPingPong(t *testing.T) {
      t.Fatal("um bug!")
  }
 
 Rodando o teste
 
  go test
+
+* Exemplo de teste
+
+.code pingpong_test.go
 
 * Slices e Arrays
 
@@ -267,7 +295,7 @@ Operações com slices
 * Iterando com range
 
  x := []int{2, 4, 6}
- m := map[string]string{"hu":"uhul!", "rock":"Rio"}
+ m := map[string]string{"stone":"auu!", "big":"brother"}
 
 Iterando sobre os índices
 
@@ -283,8 +311,8 @@ Apenas valores
 
 * Em maps
 
- for key := range m           // "hu" "rock"
- for key, value := range m    // "hu","uhul!" "rock","Rio"
+ for key := range m           // "stone" "big"
+ for key, value := range m    // "stone","auu!" "big","brother"
 
 * Exemplos de range
 
@@ -293,6 +321,10 @@ Apenas valores
 * Code TIME!
 
 .image countletters.jpg
+
+* Exemplo
+
+.play letter_counter.go
 
 * Tests?
 
@@ -311,7 +343,7 @@ Struct is the new Class
  p := Point{}  // Point{0, 0}
 
 
-* Metodos
+* Métodos
 
  func (p *Point) Mul(v int) {
      p.X, p.Y = p.X*v, p.Y*v
@@ -359,7 +391,7 @@ DuckTyping!
 
 * Hello Web
 
-.code uhul_web.go
+.code auu_web.go
 
 * Proximos passos
 

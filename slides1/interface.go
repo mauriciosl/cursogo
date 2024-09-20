@@ -29,7 +29,7 @@ func Reply(i interface{}) {
 }
 
 func main() {
-	Reply("uhul")
+	Reply("auu")
 	Reply(2)
 	Reply(true)
 	Reply(Pato{})

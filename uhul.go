@@ -2,6 +2,6 @@ package main
 
 import "fmt"
 
-func uhul() {
+func auu() {
 	fmt.Println("UHUL!")
 }

@@ -7,7 +7,7 @@ func say(s string) {
 }
 
 func main() {
-	defer say(" possivel\n")
-	say("Viajar é")
+	defer say(" Stone\n")
+	say("Conta")
 	// panic("socorro!")
 }

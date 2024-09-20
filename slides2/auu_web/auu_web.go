@@ -6,15 +6,15 @@ import (
 )
 
 // func START OMIT
-func UhulHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Uhul!")
+func AuuHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Auu!")
 }
 
 // func END OMIT
 
 // main START OMIT
 func main() {
-	http.HandleFunc("/", UhulHandler)
+	http.HandleFunc("/", AuuHandler)
 	http.ListenAndServe(":6680", nil)
 }
 

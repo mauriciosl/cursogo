@@ -6,11 +6,11 @@ import (
 )
 
 // struct START OMIT
-type UhulGreeter struct {
+type AuuGreeter struct {
 	Message string
 }
 
-func (u UhulGreeter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (u AuuGreeter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s!", u.Message)
 }
 
@@ -18,7 +18,7 @@ func (u UhulGreeter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 // main START OMIT
 func main() {
-	app := UhulGreeter{Message: "Viajar"}
+	app := AuuGreeter{Message: "Viajar"}
 	http.Handle("/", app)
 	http.ListenAndServe(":6680", nil)
 }

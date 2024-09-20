@@ -13,7 +13,7 @@ func say(s string) {
 }
 
 func main() {
-	go say(" possivel\n")
-	say("Viajar é")
+	go say(" Stone\n")
+	say("Conta")
 	time.Sleep(200 * time.Millisecond)
 }

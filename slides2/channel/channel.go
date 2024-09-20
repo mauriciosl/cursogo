@@ -6,10 +6,6 @@ import (
 	"time"
 )
 
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
-
 // START OMIT
 func worker(output chan int) {
 	i := rand.Intn(5)
